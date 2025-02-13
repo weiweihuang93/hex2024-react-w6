@@ -7,6 +7,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import AdminProductPage from "../pages/AdminProductPage";
 import AdminOrderPage from "../pages/AdminOrderPage";
 import LoginPage from "../pages/LoginPage";
+import NotFound from "../pages/NotFound";
 
 const routes = [
   {
@@ -48,6 +49,10 @@ const routes = [
         element: <AdminOrderPage />
       }
     ]
+  },
+  {
+    path: "*",
+    element: <NotFound />
   }
 ]
 
