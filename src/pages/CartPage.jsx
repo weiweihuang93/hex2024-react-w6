@@ -232,7 +232,7 @@ export default function CartPage(){
                   }
                 })}
                 id="tel"
-                type="text"
+                type="tel"
                 className={`form-control ${errors.tel && 'is-invalid'}`}
                 placeholder="請輸入電話" />
 
@@ -268,7 +268,7 @@ export default function CartPage(){
               </textarea>
             </div>
             <div className="text-end">
-              <button type="submit" className="btn btn-danger">
+              <button type="submit" className="btn btn-danger" disabled={cart.carts?.length === 0}>
                 送出訂單
               </button>
             </div>
