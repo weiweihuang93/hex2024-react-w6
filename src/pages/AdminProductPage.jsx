@@ -68,7 +68,7 @@ export default function AdminProductPage() {
     setModalMode(mode);
     switch (mode) {
       case 'create':
-        setTempProduct(defaultModalState);
+        setTempProduct({ ...defaultModalState });
         break;
 
       case 'edit':
@@ -144,8 +144,9 @@ export default function AdminProductPage() {
           is_enabled: tempProduct.is_enabled ? 1 : 0
         }
       });
+      closeModal();
     } catch (error) {
-      alert('新增產品失敗');
+      throw error;
     }
   };
 
@@ -159,8 +160,9 @@ export default function AdminProductPage() {
           is_enabled: tempProduct.is_enabled ? 1 : 0
         }
       });
+      closeModal();
     } catch (error) {
-      alert('修改產品失敗');
+      throw error;
     }
   };
 
@@ -169,9 +171,9 @@ export default function AdminProductPage() {
     try {
       await apiCall();
       getProduct();
-      closeModal();
     } catch (error) {
-      alert('更新產品失敗');
+      const errorMessage = error.response?.data?.message || '發生未知錯誤';
+      alert(`新增產品失敗: ${errorMessage}`);
     }
   };
 
@@ -185,7 +187,8 @@ export default function AdminProductPage() {
     }
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (e, page) => {
+    e.preventDefault();
     getProduct(page);
   }
   const handleFileChange = async (e) => {
@@ -255,7 +258,7 @@ export default function AdminProductPage() {
           <ul className="pagination">
             <li className="page-item">
               <a 
-                onClick={() => handlePageChange(pagination.current_page - 1)}
+                onClick={(e) => handlePageChange(e, pagination.current_page - 1)}
                 className={`page-link ${pagination.has_pre ? '' : 'disabled'}`} 
                 href="#">
                 上一頁
@@ -264,7 +267,7 @@ export default function AdminProductPage() {
             {Array.from({ length: pagination.total_pages }).map((_, index) => (
               <li key={index} className="page-item" >
                 <a 
-                  onClick={() => handlePageChange(index + 1)}
+                  onClick={(e) => handlePageChange(e, index + 1)}
                   className={`page-link ${pagination.current_page === index + 1 ? 'active' : ''}`} 
                   href="#" >
                   {index + 1}
@@ -274,7 +277,7 @@ export default function AdminProductPage() {
 
             <li className="page-item" >
               <a
-                onClick={() => handlePageChange(pagination.current_page + 1)}
+                onClick={(e) => handlePageChange(e, pagination.current_page + 1)}
                 className={`page-link ${pagination.has_next ? '' : 'disabled'}`}
                 href="#">
                 下一頁
@@ -417,6 +420,7 @@ export default function AdminProductPage() {
                         type="number"
                         className="form-control"
                         placeholder="請輸入原價"
+                        min="0" // 限制最小值為 0
                       />
                     </div>
                     <div className="col-6">
@@ -431,6 +435,7 @@ export default function AdminProductPage() {
                         type="number"
                         className="form-control"
                         placeholder="請輸入售價"
+                        min="0" // 限制最小值為 0
                       />
                     </div>
                   </div>
