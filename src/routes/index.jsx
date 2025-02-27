@@ -1,12 +1,14 @@
-import FrontLayout from "../layouts/FrontLayout";
-import HomePage from "../pages/Homepage";
-import ProductPage from "../pages/ProductPage";
-import ProductDetailPage from "../pages/ProductDetailPage";
-import CartPage from "../pages/CartPage";
-import AdminLayout from "../layouts/AdminLayout";
-import AdminProductPage from "../pages/AdminProductPage";
-import AdminOrderPage from "../pages/AdminOrderPage";
-import LoginPage from "../pages/LoginPage";
+import FrontLayout from "../front/FrontLayout";
+import HomePage from "../front/HomePage";
+import ProductPage from "../front/ProductPage";
+import ProductDetailPage from "../front/ProductDetailPage";
+import CartPage from "../front/CartPage";
+
+import AdminLayout from "../admin/AdminLayout";
+import AdminProductPage from "../admin/AdminProductPage";
+import AdminOrderPage from "../admin/AdminOrderPage";
+import LoginPage from "../admin/LoginPage";
+
 import NotFound from "../pages/NotFound";
 
 const routes = [

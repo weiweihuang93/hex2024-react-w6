@@ -237,7 +237,7 @@ export default function AdminProductPage() {
                     color: product.is_enabled ? 'green' : 'red',
                     fontWeight: 'bold',
                   }}>
-                  {product.is_enabled ? '啟用' : '未啟用'}
+                  {product.is_enabled ? '已啟用' : '未啟用'}
                 </td>
                 <td>
                   <div className="btn-group">
